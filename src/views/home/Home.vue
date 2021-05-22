@@ -1,7 +1,7 @@
 <template>
   <div id='home'>
     <nav-bar class="nav-bar"><div slot="center">购物街</div></nav-bar>
-    <scroll class="content">
+    <!-- <scroll class="content"> -->
       <div>
         <home-swiper :banners="banners"></home-swiper>
         <home-recommond :recommends="recommends"></home-recommond>
@@ -9,7 +9,7 @@
         <TabCortrol :title="['流行','新款','精选']" class="tab-cortrol" @tabClick='tabClick'></TabCortrol>
         <goods-list :GoodsList="goodsList[currentType].list" ></goods-list>
       </div>
-    </scroll>
+    <!-- </scroll> -->
   <!-- <ul>
     <li>11</li>
     <li>12</li>
@@ -119,7 +119,7 @@
 import NavBar from 'components/common/navbar/Navbar.vue'
 import TabCortrol from 'components/content/tabCortrol/TabCortrol.vue'
 import GoodsList from 'components/content/goods/GoodsList.vue'
-import Scroll from 'components/common/scroll/Scroll.vue'
+// import Scroll from 'components/common/scroll/Scroll.vue'
 
 import HomeSwiper from './childComps/HomeSwiper'
 import HomeRecommond from './childComps/HomeRecommond'
@@ -135,7 +135,7 @@ import {getHomeMultidata,getGoodsList} from 'network/home.js'
       NavBar,
       TabCortrol,
       GoodsList,
-      Scroll,
+      // Scroll,
 
       HomeSwiper,
       HomeRecommond,
@@ -168,7 +168,7 @@ import {getHomeMultidata,getGoodsList} from 'network/home.js'
        * 事件监听相关的方法
        */
       tabClick(index){
-        console.log(index);
+        // console.log(index);
         switch (index) {
           case 0:
             this.currentType='pop'

@@ -28,7 +28,8 @@ export default {
     },
     methods: {
         itemClick(index){
-            this.currentIndex =index,
+            // console.log(index)
+            this.currentIndex = index,
             this.$emit('tabClick',index)//向父组件发送 方法 点击['流行','新款','精选'] 进行切换
         }
     },
@@ -42,7 +43,7 @@ export default {
     line-height: 40px;
     font-size: 15px;
     background-color: #fff;
-    z-index: 9;
+    z-index: 6;
   }
 
   .tab-control-item {

@@ -4,7 +4,8 @@ import router from './router'
 import store from './store'
 
 Vue.config.productionTip = false
-
+//给Vue的实例 添加bus 总线
+Vue.prototype.$bus = new Vue()
 new Vue({
   router,
   store,

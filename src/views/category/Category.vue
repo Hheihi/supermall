@@ -118,7 +118,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .warpper{
   height: 300px;
   background: red;

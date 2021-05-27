@@ -43,7 +43,7 @@ import HomeRecommond from "./childComps/HomeRecommond";
 import FeatureView from "./childComps/Featureview";
 
 import { getHomeMultidata, getGoodsList } from "network/home.js";
-import {debounce} from '../../common/utils/debounce';
+import {itemListener} from '../../common/utils/mixin'
 export default {
   name: "Home",
   components: {
@@ -83,11 +83,7 @@ export default {
       this.getGoodsList("sell");
   },
   mounted() {
-    //监听图片加载 加载一张就刷新  使用防抖函数之后
-    const refresh =  debounce(this.$refs.scroll.refresh,200)
-    this.$bus.$on("imgItemLoad", () => {
-        refresh();
-    });
+
   },
   methods: {
     /**
@@ -159,10 +155,12 @@ export default {
      this.$refs.scroll.scrollto(0,this.saveY,0)
      this.$refs.scroll.refresh()
   },
+  mixins:[itemListener],
   deactivated() {
     //路由销毁
     //拿到切换 之前 的滑动的Y值
     // console.log(this.$refs.scroll.scroll);
+    this.$bus.$off("imgItemLoad",this.imgItemLoadListener)
     this.saveY = this.$refs.scroll.getSaveY()
   }
 };

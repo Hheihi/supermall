@@ -1,6 +1,6 @@
 <template>
-  <div class="goods">
-      <img :src="GoodsListItem.show.img" alt="" @load="imgLoad">
+  <div class="goods" @click="itemClick">
+      <img :src="showImage" alt="" @load="imgLoad">
       <div class="goods-info">
           <p>{{GoodsListItem.title}}</p>
           <span class="price">{{GoodsListItem.price}}</span>
@@ -20,17 +20,33 @@ props:{
         }
     }
 },
+computed:{ 
+  showImage(){
+    return  this.GoodsListItem.image || this.GoodsListItem.show.img
+  }
+},
 methods: {
   //监听图片加载
   imgLoad(){
     // console.log('---')
     this.$bus.$emit('imgItemLoad')
+  },
+  itemClick(){
+    // console.log(this.GoodsListItem.iid);
+    //路由跳转 跳转到详情页
+    this.$router.push({
+      path:'/detail',
+      query:{
+        iid:this.GoodsListItem.iid
+      }
+    })
+   
   }
 },
 }
 </script>
 
-<style>
+<style scoped>
 .goods {
     padding-bottom: 40px;
     position: relative;

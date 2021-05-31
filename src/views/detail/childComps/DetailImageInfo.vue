@@ -13,6 +13,7 @@
           :src="item"
           :key="index"
           alt=""
+          @load="detailImgLoad"
         />
       </div>
     </div>
@@ -36,6 +37,9 @@ export default {
     };
   },
   methods: {
+    detailImgLoad(){
+      this.$emit("detailImageLoad")
+    }
   },
 };
 </script>

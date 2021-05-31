@@ -36,14 +36,13 @@ import NavBar from "components/common/navbar/Navbar.vue";
 import TabCortrol from "components/content/tabCortrol/TabCortrol.vue";
 import GoodsList from "components/content/goods/GoodsList.vue";
 import Scroll from "components/common/scroll/Scroll.vue";
-import Backtop from "components/content/backtop/Backtop.vue";
 
 import HomeSwiper from "./childComps/HomeSwiper";
 import HomeRecommond from "./childComps/HomeRecommond";
 import FeatureView from "./childComps/Featureview";
 
 import { getHomeMultidata, getGoodsList } from "network/home.js";
-import {itemListener} from '../../common/utils/mixin'
+import {itemListener,backTop} from '../../common/utils/mixin'
 export default {
   name: "Home",
   components: {
@@ -51,7 +50,6 @@ export default {
     TabCortrol,
     GoodsList,
     Scroll,
-    Backtop,
 
     HomeSwiper,
     HomeRecommond,
@@ -68,7 +66,6 @@ export default {
         sell: { page: 0, list: [] },
       },
       currentType: "pop", //点击切换 pop new sell,
-      isShow: false, //回到顶部按钮的隐藏或显示  默认隐藏
       tabCortrolTop:0 ,//计算 TabCortrolTop 滚动的高度
       isShowTabCortrol:false,//投机取巧之术  默认隐藏
       saveY:0, //路由切换时 保持不变 保存当前位置
@@ -107,12 +104,8 @@ export default {
       this.$refs.tabCortrol1.currentIndex = index
       this.$refs.tabCortrol2.currentIndex = index
     },
-    //回到顶部
-    backClick() {
-      //直接调用这个组件
-      this.$refs.scroll.scrollto(0, 0, 500);
-      // console.log(this.$refs.scroll.scroll);
-    },
+    
+    
     //回到顶部按钮的隐藏与显示
     contentScroll(position) {
       // console.log(position);
@@ -155,7 +148,8 @@ export default {
      this.$refs.scroll.scrollto(0,this.saveY,0)
      this.$refs.scroll.refresh()
   },
-  mixins:[itemListener],
+  //混入的使用
+  mixins:[itemListener,backTop],
   deactivated() {
     //路由销毁
     //拿到切换 之前 的滑动的Y值
